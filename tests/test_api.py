@@ -144,3 +144,9 @@ def test_membership_with_unparseable_date_keeps_stored_status(client):
     client.post("/api/clients", json={"name": "Odd", "membership_end": "next month"})
     body = client.get("/api/clients/Odd/membership").get_json()
     assert body == {"client": "Odd", "status": "Active", "renewal_date": "next month"}
+
+
+def test_workout_rejects_invalid_date(client, member):
+    url = f"/api/clients/{member}/workouts"
+    resp = client.post(url, json={"workout_type": "Cardio", "duration_min": 30, "date": "banana"})
+    assert resp.status_code == 400
