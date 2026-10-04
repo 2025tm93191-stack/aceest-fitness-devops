@@ -180,6 +180,10 @@ def register_routes(app):
             if isinstance(duration, bool) or not isinstance(duration, int) or duration <= 0:
                 return error("duration_min must be a positive integer")
             workout_date = data.get("date") or date.today().isoformat()
+            try:
+                date.fromisoformat(workout_date)
+            except (TypeError, ValueError):
+                return error("date must be in YYYY-MM-DD format")
             conn.execute(
                 "INSERT INTO workouts (client_name, date, workout_type, duration_min, notes)"
                 " VALUES (?, ?, ?, ?, ?)",
