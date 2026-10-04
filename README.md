@@ -55,7 +55,7 @@ pytest --cov=fitness --cov=app --cov-report=term-missing   # with coverage
 flake8 .                                            # lint
 ```
 
-The suite has 54 tests: unit tests for the pure logic in `fitness/` (calories, BMI, adherence, program lookups) and API tests that drive every endpoint through Flask's test client, including validation errors, 404s and duplicate-client 409s. Each test gets its own temporary SQLite database, so tests never touch `instance/aceest.db` or each other. Coverage is 99%.
+The suite has 55 tests: unit tests for the pure logic in `fitness/` (calories, BMI, adherence, program lookups) and API tests that drive every endpoint through Flask's test client, including validation errors, 404s and duplicate-client 409s. Each test gets its own temporary SQLite database, so tests never touch `instance/aceest.db` or each other. Coverage is 99%.
 
 ## Running with Docker
 
